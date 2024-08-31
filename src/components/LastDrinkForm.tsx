@@ -5,17 +5,29 @@ interface LastDrinkFormProps {
 }
 
 const LastDrinkForm: React.FC<LastDrinkFormProps> = ({ onSubmit }) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(date);
+    onSubmit(new Date(date));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="date" onChange={(e) => setDate(new Date(e.target.value))} />
-      <button type="submit">Submit</button>
+    <form onSubmit={handleSubmit} className="rounded-lg bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-2xl font-semibold">When did you last drink?</h2>
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        className="mb-4 w-full rounded border p-2"
+        required
+      />
+      <button
+        type="submit"
+        className="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600"
+      >
+        Submit
+      </button>
     </form>
   );
 };

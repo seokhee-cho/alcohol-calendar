@@ -1,12 +1,12 @@
+import Head from 'next/head';
 import React, { useState } from 'react';
 
 import AddHistoryForm from '../components/AddHistoryForm';
 import Calendar from '../components/Calendar';
 import LastDrinkForm from '../components/LastDrinkForm';
 import ShareButton from '../components/ShareButton';
-import { Base } from '../templates/Base';
 
-const Index = () => {
+const Home: React.FC = () => {
   const [lastDrinkDate, setLastDrinkDate] = useState<Date | null>(null);
   const [drinkHistory, setDrinkHistory] = useState<Date[]>([]);
 
@@ -20,33 +20,41 @@ const Index = () => {
   };
 
   const handleShare = () => {
-    // Implement sharing functionality
-    console.log('Share button clicked');
+    console.log('Share functionality to be implemented');
   };
 
   return (
-    <Base>
-      <div className="container mx-auto px-4">
-        <h1 className="mb-4 text-3xl font-bold">Alcohol Calendar</h1>
+    <div className="min-h-screen bg-gray-100">
+      <Head>
+        <title>Alcohol Calendar</title>
+        <meta name="description" content="Track your alcohol consumption" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        {!lastDrinkDate && <LastDrinkForm onSubmit={handleLastDrinkSubmit} />}
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="mb-8 text-center text-4xl font-bold text-blue-600">
+          Alcohol Calendar
+        </h1>
 
-        {lastDrinkDate && (
-          <>
+        {!lastDrinkDate ? (
+          <LastDrinkForm onSubmit={handleLastDrinkSubmit} />
+        ) : (
+          <div className="space-y-6">
             <Calendar
               lastDrinkDate={lastDrinkDate}
               drinkHistory={drinkHistory}
             />
-
-            <div className="mt-4">
-              <AddHistoryForm onSubmit={handleAddHistory} />
-              <ShareButton onClick={handleShare} />
-            </div>
-          </>
+            <AddHistoryForm onSubmit={handleAddHistory} />
+            <ShareButton onClick={handleShare} />
+          </div>
         )}
-      </div>
-    </Base>
+      </main>
+
+      <footer className="py-4 text-center text-gray-500">
+        © 2024 Alcohol Calendar. All rights reserved.
+      </footer>
+    </div>
   );
 };
 
-export default Index;
+export default Home;

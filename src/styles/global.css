@@ -3,3 +3,26 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.react-calendar {
+  width: 100%;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #a0a096;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+
+.last-drink-date {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.drink-history-date {
+  background-color: #4ecdc4;
+  color: white;
+}

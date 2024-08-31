@@ -5,34 +5,30 @@ interface AddHistoryFormProps {
 }
 
 const AddHistoryForm: React.FC<AddHistoryFormProps> = ({ onSubmit }) => {
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (date) {
-      onSubmit(new Date(date));
-      setDate(''); // Reset the form after submission
-    }
+    onSubmit(new Date(date));
+    setDate('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
-      <h3 className="mb-2 text-lg font-semibold">Add Alcohol History</h3>
-      <div className="flex items-center">
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="mr-2 rounded border px-2 py-1"
-          required
-        />
-        <button
-          type="submit"
-          className="rounded bg-blue-500 px-4 py-1 text-white hover:bg-blue-600"
-        >
-          Add
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className="rounded-lg bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-2xl font-semibold">Add Drinking History</h2>
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        className="mb-4 w-full rounded border p-2"
+        required
+      />
+      <button
+        type="submit"
+        className="w-full rounded bg-green-500 py-2 text-white hover:bg-green-600"
+      >
+        Add Date
+      </button>
     </form>
   );
 };
